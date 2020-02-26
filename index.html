@@ -63,11 +63,49 @@
 
     </script>
 
+    <ul id="aaron-family">
+    </ul>
 
+    <script>
+
+        let firestore = firebase.firestore()
+        firestore.collection("Collection").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                document.getElementById('aaron-family').innerHTML += '<li>' + doc.id, doc.data() + '</li>';
+            });
+        });
+
+
+        var family = {
+            aaron: {
+                name: 'Aaron',
+                age: 30
+            },
+            megan: {
+                name: 'Megan',
+                age: 40
+            },
+            aaliyah: {
+                name: 'Aaliyah',
+                age: 2
+            }
+        }
+
+        // for (var prop in doc) {
+            // document.getElementById('aaron-family').innerHTML += '<li>' + doc.id, doc.data + '</li>';
+        // }
+
+    </script>
+
+    ----------------------
 
     <ul id="todo-list">
         <p id="initialize">Initialize...</p>
     </ul>
+
+
 
     <!-- Template -->
     <template id="template-list">
@@ -80,7 +118,7 @@
 
 
     <!-- show data to List -->
-    <script>
+    <!-- <script>
         let firestore = firebase.firestore()
         firestore.collection("Collection").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -89,27 +127,7 @@
             });
         });
 
-
-
-
-
-
-        
-
-        // //จดหมายถึง ฟลุ๊ค5555555  หาตรงนี้อยู่อะ ให้มันดึงข้อมูลออกมา กรณีที่เราไม่รู้ด้วย ว่า Doc ชื่ออะไร เพราะมันเป็นเวลาละ เทนที่ padoru หน่ะ
-        // const id = (id) => document.getElementById(id),
-        //     initialize = () => {
-        //         id("todo-list").removeChild(id("initialize"))
-        //         // id("todo-form").addEventListener("submit", event => event.preventDefault())
-        //     }
-
-        //     append = (title) => {
-        //         let template = id("template-list").content.cloneNode(true)
-        //         template.querySelector(".todo-name").textContent = title
-
-        //         id("todo-list").appendChild(template)
-        //     }
-    </script>
+    </script> -->
 
 
 </body>
