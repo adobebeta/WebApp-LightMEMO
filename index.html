@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>LightMEMO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    
+    <link rel="stylesheet" href="app.css">
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-analytics.js"></script>
+
+    <!-- Firebase Connection -->
+    <script src="./firebase.js"></script>
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <p>Turn On - Off Light</p>
+
+    <img id="myImage" src="pic_bulboff.gif" style="width:100px">
+    <br>
+    <!-- <button id="turnOnBtn" onclick="document.getElementById('myImage').src='pic_bulbon.gif'">Turn on the light</button> -->
+
+    <button id="turnOnBtn">Turn on the light</button>
+
+    <script>
+        document.getElementById("turnOnBtn").addEventListener("click", function () {
+
+            document.getElementById('myImage').src = 'pic_bulbon.gif';
+            var now = new Date().toLocaleTimeString();
+
+            let firestore = firebase.firestore()
+            // firestore.collection("Collection").doc("history").set({
+            firestore.collection("Collection").add({ 
+                status: "on",
+                time: now
+            });
+        });
+
+    </script>
+    
+    <br>
+    <button id="turnOffBtn">Turn on the light</button>
+    <!-- <button onclick="document.getElementById('myImage').src='pic_bulboff.gif'">Turn off the light</button> -->
+    <script>
+        document.getElementById("turnOffBtn").addEventListener("click", function () {
+
+            document.getElementById('myImage').src = 'pic_bulboff.gif';
+            var now = new Date().toLocaleTimeString();
+
+            let firestore = firebase.firestore()
+            // firestore.collection("Collection").doc("history").set({
+            firestore.collection("Collection").add({ 
+                status: "off",
+                time: now
+            });
+        });
+
+    </script>
+
+
+
+    <ul id="todo-list">
+        <p id="initialize">Initialize...</p>
+    </ul>
+
+    <!-- Template -->
+    <template id="template-list">
+        <li class="list" id="list-id">
+            <p class="todo-name"></p>
+            <button class="remove-todo" onclick="RemoveRow()">x</button>
+        </li>
+    </template>
+
+
+</body>
+
+</html>
