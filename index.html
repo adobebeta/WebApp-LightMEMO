@@ -5,7 +5,7 @@
     <title>LightMEMO</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    
+
     <link rel="stylesheet" href="app.css">
 
 
@@ -36,16 +36,16 @@
 
             let firestore = firebase.firestore()
             // firestore.collection("Collection").doc("history").set({
-            firestore.collection("Collection").add({ 
+                firestore.collection("Collection").doc(now).add({
                 status: "on",
                 time: now
             });
         });
 
     </script>
-    
+
     <br>
-    <button id="turnOffBtn">Turn on the light</button>
+    <button id="turnOffBtn">Turn off the light</button>
     <!-- <button onclick="document.getElementById('myImage').src='pic_bulboff.gif'">Turn off the light</button> -->
     <script>
         document.getElementById("turnOffBtn").addEventListener("click", function () {
@@ -55,7 +55,7 @@
 
             let firestore = firebase.firestore()
             // firestore.collection("Collection").doc("history").set({
-            firestore.collection("Collection").add({ 
+            firestore.collection("Collection").doc(now).add({
                 status: "off",
                 time: now
             });
@@ -76,6 +76,33 @@
             <button class="remove-todo" onclick="RemoveRow()">x</button>
         </li>
     </template>
+
+    <!-- show data to List -->
+    <script>
+
+        //จดหมายถึง ฟลุ๊ค5555555  หาตรงนี้อยู่อะ ให้มันดึงข้อมูลออกมา กรณีที่เราไม่รู้ด้วย ว่า Doc ชื่ออะไร เพราะมันเป็นเวลาละ เทนที่ padoru หน่ะ
+
+        firestore.collection("Collection").doc("Padoru").get().then(function (docs) {
+            if (docs.exists) {
+                console.log(docs.data());
+            } else {
+                console.log("No data");
+            }
+        })
+
+        // const id = (id) => document.getElementById(id),
+        //     initialize = () => {
+        //         id("todo-list").removeChild(id("initialize"))
+        //         id("todo-form").addEventListener("submit", event => event.preventDefault())
+        //     },
+
+        //     append = (title) => {
+        //         let template = id("template-list").content.cloneNode(true)
+        //         template.querySelector(".todo-name").textContent = title
+
+        //         id("todo-list").appendChild(template)
+        //     }
+    </script>
 
 
 </body>
