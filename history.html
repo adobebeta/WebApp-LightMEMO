@@ -31,7 +31,7 @@
                     querySnapshot.forEach(function (doc) {
 
                         console.log(doc.id, " => ", doc.data());
-                        document.getElementById("initialize").innerHTML += '<li>' + doc.id, doc.data() + '</li>';
+                        document.getElementById("initialize").innerHTML += '<li> Mode: ' + JSON.stringify(doc.data().status) + '  Time: '+JSON.stringify(doc.data().time) +'</li>';
                     });
                 });
 
@@ -40,6 +40,10 @@
 
         </p>
     </ul>
+
+    <a href="index.html">
+        <button>Back</button>
+    </a>
 </body>
 
 </html>
