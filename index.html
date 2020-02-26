@@ -40,6 +40,15 @@
                 status: "on",
                 time: now
             });
+
+            //ติดตรงนี้
+            function append(title){
+                let template = document.getElementById("template-list").content.cloneNode(true)
+                template.querySelector(".todo-name").textContent = title
+
+                document.getElementById("todo-list").innerHTML = template
+                Console.log("เข้าจ้า")
+            }
         });
 
     </script>
@@ -54,7 +63,6 @@
             var now = new Date().toLocaleTimeString();
 
             let firestore = firebase.firestore()
-            // firestore.collection("Collection").doc("history").set({
             firestore.collection("Collection").doc(now).set({
                 status: "off",
                 time: now
@@ -65,7 +73,7 @@
 
 
     <ul id="todo-list">
-        <p id="initialize">Initialize...</p>
+        <!-- <p id="initialize">Initialize...</p> -->
     </ul>
 
 
@@ -91,19 +99,25 @@
         });
 
 
+        // เอาไปแสดงใน template
+        // function initialize(){
+        //     document.getElementById("todo-list").removeChild(document.getElementById("initialize"))
+        //     document.getElementById("turnOnBtn").addEventListener("")
+        // }
 
-        initialize = () => {
-            id("todo-list").removeChild(id("initialize"))
-            id("todo-form").addEventListener("submit", event => event.preventDefault())
-        },
-            addTodo = (callback) => id("todo-form").addEventListener("submit", (event) => callback(event)),
 
-            append = (title) => {
-                let template = id("template-list").content.cloneNode(true)
-                template.querySelector(".todo-name").textContent = title
+        // initialize = () => {
+        //     id("todo-list").removeChild(id("initialize"))
+        //     id("todo-form").addEventListener("submit", event => event.preventDefault())
+        // },
+        //     addTodo = (callback) => id("todo-form").addEventListener("submit", (event) => callback(event)),
 
-                id("todo-list").appendChild(template)
-            }
+        //     append = (title) => {
+        //         let template = id("template-list").content.cloneNode(true)
+        //         template.querySelector(".todo-name").textContent = title
+
+        //         id("todo-list").appendChild(template)
+        //     }
 
 
     </script>
