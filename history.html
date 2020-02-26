@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -18,12 +19,27 @@
     <script src="./main.js"></script>
     <title>History</title>
 </head>
+
 <body>
     <ul id="todo-list">
         <p id="initialize">
 
-            
+
+            <script>
+                let firestore = firebase.firestore()
+                firestore.collection("Collection").get().then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+
+                        console.log(doc.id, " => ", doc.data());
+                        document.getElementById("initialize").innerHTML += '<li>' + doc.id, doc.data() + '</li>';
+                    });
+                });
+
+            </script>
+
+
         </p>
     </ul>
 </body>
+
 </html>
